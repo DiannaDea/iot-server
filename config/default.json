@@ -1,0 +1,14 @@
+{
+  "db": {
+      "name": "voting-db",
+      "host": "ds125713.mlab.com",
+      "port": 25713
+  },
+  "token" : {
+      "expiresIn": 21600
+  },
+  "mail": {
+      "email": "dianababurina74@gmail.com",
+      "service": "gmail"
+  }
+}

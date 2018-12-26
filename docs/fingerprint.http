@@ -1,0 +1,14 @@
+### Create fingerprint
+
+POST http://localhost:7000/api/fingerprint
+Content-Type: application/json
+
+{
+  "email": "dianababurina74@gmail.com",
+  "hash": "dlldldld",
+  "userId": "dldlkfkfkf"
+}
+
+### Get user fingeprints by email
+
+GET http://localhost:7000/api/fingerprint?email=dianababurina74@gmail.com
