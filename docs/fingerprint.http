@@ -11,4 +11,6 @@ Content-Type: application/json
 
 ### Get user fingeprints by email
 
-GET http://localhost:7000/api/fingerprint?email=dianababurina74@gmail.com
+GET http://localhost:7000/api/fingerprint?email=diana.babu7ina@nure.ua&hash=1f448b10ee8b166ee0644d833f5880bf
+
+###

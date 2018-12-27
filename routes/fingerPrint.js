@@ -19,23 +19,39 @@ const createFingerPrint = async (ctx) => {
   } catch (error) {
     return ctx.send(500, error);
   }
-}
+};
 
 const getFingerPrints = async (ctx) => {
-  const { email } = ctx.query;
+  const { email, hash } = ctx.query;
 
   try {
-    const fingerprints = await FingerPrint.find({
-      email,
+    const fingerprint = await FingerPrint.findOne({
+      email, hash
     });
 
-    return (fingerprints && fingerprints.length)
-      ? ctx.send(200, fingerprints)
-      : ctx.send(204);
+    if (!fingerprint) {
+        const fingePrintWithEmail = await FingerPrint.findOne({
+            email
+        });
+
+        if (fingePrintWithEmail) {
+            const addedFingerPrint = await FingerPrint.create({
+                _id: new mongoose.Types.ObjectId(),
+                email, hash,
+                userId: 'dldlkfkfkf',
+            });
+
+            return (addedFingerPrint)
+                ? ctx.send(200)
+                : ctx.send(204);
+        }
+        return ctx.send(204);
+    }
+    return ctx.send(200);
   } catch (error) {
     return ctx.send(500, error);
   }
-}
+};
 
 fingerPrintRouter.route({
   method: 'post',
@@ -56,7 +72,8 @@ fingerPrintRouter.route({
   path: '/',
   validate: {
       query: {
-        email: Joi.string().email(),
+          hash: Joi.string().alphanum().required(),
+          email: Joi.string().email(),
       },
   },
   handler: getFingerPrints,
