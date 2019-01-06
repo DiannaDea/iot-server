@@ -7,7 +7,6 @@ const FingerPrintSchema = Schema({
     hash: {
         type: Schema.Types.String,
         required: true,
-        unique: true,
     },
     email: {
       type: Schema.Types.String,
